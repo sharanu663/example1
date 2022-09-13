@@ -1,0 +1,62 @@
+#include<iostream>
+#include<limits>
+#include<new>
+#include <utility>
+
+#define TEST_STD_VER 14
+struct Compare_lhs_and_rhs 
+{
+    int n;
+};
+
+struct test 
+{
+    int i;
+};
+ 
+void test_limits(void);
+
+
+
+  
+int main()
+{
+
+std::cout<<"test_limits"<<std::endl;
+test_limits();
+}
+
+
+void test_limits(void)
+{
+  
+  std::numeric_limits<bool> bool_range;
+
+  bool min_value=bool_range.min(); 
+  std::cout<<"min_value: "<<min_value<<std::endl;
+
+  bool max_value=bool_range.max(); 
+  std::cout<<"max_value: "<<max_value<<std::endl;
+
+  bool low_value=bool_range.lowest();
+  std::cout<<"low_value: "<<low_value<<std::endl;
+
+  bool esp_value=bool_range.epsilon();
+  std::cout<<"esp_value: "<<esp_value<<std::endl;
+
+  bool round_err_value=bool_range.round_error();
+  std::cout<<"round_err_value: "<<round_err_value<<std::endl;
+
+  bool infi_value=bool_range.infinity();
+  std::cout<<"infi_value: "<<infi_value<<std::endl;
+
+  bool quiet_value=bool_range.quiet_NaN();
+  std::cout<<"quiet_value: "<<quiet_value<<std::endl;
+
+  bool signaling_value=bool_range.signaling_NaN();
+  std::cout<<"signaling_value: "<<signaling_value<<std::endl;
+
+  bool denorm_min_value=bool_range.denorm_min();
+  std::cout<<"denorm_min_value: "<<denorm_min_value<<std::endl;
+
+}  
