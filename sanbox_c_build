@@ -1,0 +1,149 @@
+gcc-riscv64-unknown-elf : this is use for downloading the tool chain
+
+gdb-multiarch : this is use for GDB Debugger , multiarch is support for risc -v 
+qemu-system-misc : use for qemu (without actual hardware you will able to run your program)
+
+runing the code  in sandbox : github is provide the cloud linux machine : 
+
+generating the binary file of m.s
+
+steps:
+run below command in the terminal : 
+
+1. riscv64-unknown-elf-gcc -O0 -ggdb -nostdlib -march=rv32i -mabi=ilp32 -Wl, -Tm.ld m.s
+    riscv64-unknown-elf-gcc : gcc will call internal assemblar and linker,compiler 
+    -O0: do not optimize the code
+    -ggdb: provide the more information in binary file so gdb can understand for debugging
+    -nostdlib:  once compile the code riscv64-unknown-elf do not include standard libaray like printf statment (exter junck)
+
+    -march=rv32i : sayes that rv32i (only integer instruction set), if rv32im means that it will support integer
+                    and multiplication intruction set.
+    -Wl : telling that compiler after -wl, take the linker file 
+
+
+MEMORY
+{
+    RAM : ORGINI = 0x80000000, LENGTH = 4k /* qemu will fetch on the code this address*/
+}
+
+SECTIONS
+{
+    .text : {   /* here telling executable file put on this location(address) that is (0x80000000)
+        *(.text*)
+    } > RAM
+}
+
+if you want genrate elf file use below command:
+ riscv64-unknown-elf-gcc -O0 -ggdb -nostdlib -march=rv32i -mabi=ilp32 -Wl,-Tm.ld m.s -o main.elf
+
+2. call the qemu command :
+    qemu-system-riscv32 -S -M virt -nographic -bios none -kernel main.elf -gdb tcp::1234
+    -S : means as you start cpu, telling to cpu stop at first intruction don't execut 
+    -M : start specific maching at is vertiual machine 
+
+3. next command is GDB comand :
+
+    
+
+
+    gdb-multiarch : telling  gdb-multiarch take the main.elf  for debugging
+    target remote localhost:2345 :  will connect qemu base on the localhost number that is used here is (1234)
+       both side (gdb command and qemu command) tcp number should be same.
+
+    if it is not connecting change localhost number on both command and try.
+
+
+
+    if you type in gdb : info reg 
+    it will provide register information 
+
+
+first terminal :
+@sharanu663 ➜ /workspaces/c-language (main) $ riscv64-unknown-elf-gcc -O0 -ggdb -nostdlib -march=rv32i -mabi=ilp32 -Wl,-Tm.ld m.s -o main.elf
+@sharanu663 ➜ /workspaces/c-language (main) $ qemu-system-riscv32 -S -M virt -nographic -bios none -kernel main.elf -gdb tcp::5678
+
+relase the qemu command is :
+    press ctrl A relase 
+    and press x
+second  terminal running the gdb :
+
+@sharanu663 ➜ /workspaces/c-language (main) $ gdb-multiarch main.elf -ex "target remote localhost:5678" -ex "break _start" -ex "continue" -q
+Reading symbols from main.elf...
+Remote debugging using localhost:5678
+0x00001000 in ?? ()
+Breakpoint 1 at 0x80000000: file m.s, line 2.
+Continuing.
+
+Breakpoint 1, _start () at m.s:2
+2           j _start
+(gdb) info reg
+ra             0x0      0x0
+sp             0x0      0x0
+gp             0x0      0x0
+tp             0x0      0x0
+t0             0x80000000       -2147483648
+t1             0x0      0
+t2             0x0      0
+fp             0x0      0x0
+s1             0x0      0
+a0             0x0      0
+a1             0x1020   4128
+a2             0x0      0
+a3             0x0      0
+a4             0x0      0
+a5             0x0      0
+a6             0x0      0
+a7             0x0      0
+s2             0x0      0
+--Type <RET> for more, q to quit, c to continue without paging--
+s3             0x0      0
+s4             0x0      0
+s5             0x0      0
+s6             0x0      0
+s7             0x0      0
+s8             0x0      0
+s9             0x0      0
+s10            0x0      0
+s11            0x0      0
+t3             0x0      0
+t4             0x0      0
+t5             0x0      0
+t6             0x0      0
+pc             0x80000000       0x80000000 <_start>
+(gdb) 
+(gdb) 
+(gdb) q
+A debugging session is active.
+
+        Inferior 1 [process 1] will be detached.
+
+Quit anyway? (y or n) y
+Detaching from program: /workspaces/c-language/main.elf, process 1
+Ending remote debugging.
+[Inferior 1 (process 1) detached]
+
+
+To see the only instruction in .elf file we need to remove the debugg information 
+from the file using below command can achive 
+
+1. riscv64-unknown-elf-objcopy -o binary main.elf main.bin
+
+main.elf  : this is input file 
+main.bin  : output file 
+
+2: this command through we see the file content with proper allignament 
+    xxd -e -c 4 -g 4 main.bin
+
+Now we can do automation we are running commands manually for compiling and connecting the qemu and gdb to 
+reslove this we writing the Make file
+
+
+1) "ni"(next instruction) command use for excute next instruction in gdb graphic bash termainal.
+2) if you want excute your program just type "c" in your graphic gdb terminal.
+3) if you press "ctrl and c" will stop the process and you can see the output in your graphic gdb terminal.
+
+audacity : is this software digital audio editor and recording.
+
+
+
+
