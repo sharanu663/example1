@@ -1,1 +1,56 @@
+1. multipass and virtual box download in windows machine for devlop the linux device driver 
 
+     https://documentation.ubuntu.com/multipass/en/latest/how-to-guides/install-multipass/
+
+    VirtualBox
+    Multipass also supports using VirtualBox as a virtualisation provider. You can download the latest version from the VirtualBox download page.
+
+   multipass : 
+
+    Download the latest installer from our download page. You can also get pre-release versions from the GitHub releases page, look for the .msi file.
+
+2. download th vs code software
+    https://code.visualstudio.com/
+
+3. ceate a virtual machine using primary name  
+    enter the below command on terminal 
+   1) multipass networks
+   here we can see the which is network connected (like WiFi)
+   2)    multipass launch --network (network name) --name primary
+      ex:  multipass launch --network WiFi --name primary
+
+3.   setup the primary machine to accept ssh connection using password 
+      edit file and restart few service.
+      set the password for the user - ubuntu
+      open the vs code and click the extension icon and downlaod 
+        Remote development software  
+       once the done the downlaod you can see the ssh icon  and click the 
+        "+"  add  here  ubuntu@IP address past and connect 
+   meanwhile you can open terminal enter the below command
+      multipass list
+   here you can see the IP address and copy the ip address past to the vs code 
+
+   next command :
+      multipass shell 
+    it enter the ubuntu machine 
+
+   edit some file using below command : 
+      sudo vim /etc/ssh/sshd_config
+      intialliy  kbdInteractiveAuthentication is "no"
+      change  kbdInteractiveAuthentication to "yes" 
+  reload the daemon the system :
+   sudo systemctl daemon-reload
+   sudo service ssh restart
+   sudo passwd ubuntu 
+  here you can enter new password 
+
+4.  multipass shell : uses relaunch the ubuntu machine  
+
+  
+     
+
+ 
+ 
+
+ 
+   
