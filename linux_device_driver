@@ -47,7 +47,7 @@ setup in window machine :
   here you can enter new password 
 
 4.  multipass shell : uses relaunch the ubuntu machine  
-
+     or multipass start primary 
   
      
 
