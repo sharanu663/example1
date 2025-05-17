@@ -48,6 +48,12 @@ setup in window machine :
 
 4.  multipass shell : uses relaunch the ubuntu machine  
      or multipass start primary 
+
+
+
+** :  if you want to see what kind of file present in the directory below command use it.
+      file *
+     it will provide the info  all files present in the currect directory
   
      
 
