@@ -59,8 +59,11 @@ setup in window machine :
 proc_fs file use for : creates a virtual  file but we can do read, write opertions, these file are not be stored in real harddisk.
                      file information can print dynamically 
 
+sudo insmod filename.ko : use for loading the module into the kernel 
+sudo rmmod filename : use for removing the module from the kernel 
+lsmod : check the whether module is loaded or not 
+ls /proc : list the process directory 
 
-     
 
  
  
