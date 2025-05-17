@@ -64,7 +64,19 @@ sudo rmmod filename : use for removing the module from the kernel
 lsmod : check the whether module is loaded or not 
 ls /proc : list the process directory 
 sudo dmesg : print the buffer log message
- 
+
+[ 2777.178841] Hello world! First module init
+[ 2777.178847] Kernel level print by Sharanu
+[ 4887.334175] First module exit
+[ 4912.022962] Hello world! First module init
+[ 4912.022971] Kernel level print by Sharanu
+[ 5585.544676] First module exit
+[ 5619.225956] Hello world! First module init
+[ 5619.225965] Kernel level print by Sharanu
+
+ubuntu@primary:~/linux_driver$ ls /proc/
+ubuntu@primary:~/linux_driver$ cat /proc/Linux\ Dev\ Driver
+ubuntu@primary:~/linux_driver$
  
 
  
