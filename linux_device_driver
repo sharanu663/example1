@@ -63,8 +63,7 @@ sudo insmod filename.ko : use for loading the module into the kernel
 sudo rmmod filename : use for removing the module from the kernel 
 lsmod : check the whether module is loaded or not 
 ls /proc : list the process directory 
-
-
+sudo dmesg : print the buffer log message
  
  
 
