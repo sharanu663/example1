@@ -54,7 +54,10 @@ setup in window machine :
 ** :  if you want to see what kind of file present in the directory below command use it.
       file *
      it will provide the info  all files present in the currect directory
-  
+
+
+proc_fs file use for : creates a virtual  file but we can do read, write opertions, these file are not be stored in real harddisk.
+                     file information can print dynamically 
      
 
  
