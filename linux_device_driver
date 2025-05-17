@@ -75,8 +75,17 @@ sudo dmesg : print the buffer log message
 [ 5619.225965] Kernel level print by Sharanu
 
 ubuntu@primary:~/linux_driver$ ls /proc/
-ubuntu@primary:~/linux_driver$ cat /proc/Linux\ Dev\ Driver
-ubuntu@primary:~/linux_driver$
+ubuntu@primary:~/linux_driver$ cat /proc/Linux\ Dev\ Driver  //  here we called the proc_read_temp function but print message 
+// will be storing the kernel log buffer we haven't sent the print message to user space that's why we seeing the output message in
+// dmesg wheather kernel get called or not proc_read_temp function 
+ubuntu@primary:~/linux_driver$ sudo dmesg
+[ 5695.881566] read proc function get called
+
+if want to see print message in user space from the kernel space print messages let's do 
+
+
+
+
  
 
  
