@@ -47,7 +47,7 @@ setup in window machine :
   here you can enter new password 
 
 4.  multipass shell : uses relaunch the ubuntu machine  
-     or multipass start primary 
+     or multipass start primary , multipass stop primary use for stop the process
 
 
 
@@ -58,6 +58,8 @@ setup in window machine :
 
 proc_fs file use for : creates a virtual  file but we can do read, write opertions, these file are not be stored in real harddisk.
                      file information can print dynamically 
+
+
      
 
  
